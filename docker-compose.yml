@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  nemefisto-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nemefisto-web
+    restart: unless-stopped
+    ports:
+      # Пробрасываем порт 8080 на хосте к порту 80 в контейнере (Nginx)
+      # 127.0.0.1 гарантирует, что доступ к интерфейсу будет только через Caddy
+      - "127.0.0.1:8080:80"
